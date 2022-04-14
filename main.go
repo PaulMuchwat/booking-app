@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var conferenceName = "Go Conference"
+	var conferenceName = "Ukoo Conference"
 	const conferenceTickets = 50
 	var remainingTickets = 50
 
