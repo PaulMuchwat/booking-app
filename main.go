@@ -5,7 +5,8 @@ import "fmt"
 func main() {
 	conferenceName := "Ukoo Conference"
 	const conferenceTickets = 50
-	var remainingTickets = 50
+	var remainingTickets uint = 50
+	var bookings []string
 
 	fmt.Printf("Welcome to %v booking application.\n", conferenceName)
 	fmt.Printf("We have a total of %v tickets and %v are still available.\n", conferenceTickets, remainingTickets)
@@ -14,16 +15,30 @@ func main() {
 	var firstName string
 	var lastName string
 	var email string
-	var userTickets int
+	var userTickets uint
 	// ask user name
 	fmt.Println("Enter your first name:")
 	fmt.Scan(&firstName)
+
 	fmt.Println("Enter your last name:")
 	fmt.Scan(&lastName)
+
 	fmt.Println("Enter your email address:")
 	fmt.Scan(&email)
+
 	fmt.Println("Enter number of tickets:")
 	fmt.Scan(&userTickets)
 
+	remainingTickets = remainingTickets - userTickets
+	bookings = append(bookings, firstName+" "+lastName)
+
+	fmt.Printf("The whole slice: %v\n", bookings)
+	fmt.Printf("The first slice: %v\n", bookings[0])
+	fmt.Printf("The slice type: %T\n", bookings)
+	fmt.Printf("The slice length: %v\n", len(bookings))
+
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n", firstName, lastName, userTickets, email)
+	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceTickets)
+
+	fmt.Printf("These are all our bookings: %v\n", bookings)
 }
