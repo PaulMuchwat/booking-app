@@ -33,33 +33,31 @@ func main() {
 		fmt.Println("Enter number of tickets:")
 		fmt.Scan(&userTickets)
 
-		if userTickets > remainingTickets {
+		if userTickets <= remainingTickets {
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, firstName+" "+lastName+",")
+
+			fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n", firstName, lastName, userTickets, email)
+			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceTickets)
+
+			//Display only first name
+			// This loop ends when iterated over all elements of te booking list
+			firstNames := []string{}
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0]+",")
+			}
+
+			fmt.Printf("These are all our bookings: %v\n", bookings)
+			fmt.Printf("These are all our bookings first names: %v\n", firstNames)
+
+			if remainingTickets == 0 {
+				//end program
+				fmt.Println("Tickets are all booked out")
+				break
+			}
+		} else {
 			fmt.Printf("You cannot book %v tickets. You can only book from the remaining %v tickets\n", userTickets, remainingTickets)
-			continue
 		}
-
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, firstName+" "+lastName+",")
-
-		fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v\n", firstName, lastName, userTickets, email)
-		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceTickets)
-
-		//Display only first name
-		// This loop ends when iterated over all elements of te booking list
-		firstNames := []string{}
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			firstNames = append(firstNames, names[0]+",")
-		}
-
-		fmt.Printf("These are all our bookings: %v\n", bookings)
-		fmt.Printf("These are all our bookings first names: %v\n", firstNames)
-
-		if remainingTickets == 0 {
-			//end program
-			fmt.Println("Tickets are all booked out")
-			break
-		}
-
 	}
 }
